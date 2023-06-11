@@ -1,4 +1,3 @@
-import { Component } from "react";
 import styled from "styled-components";
 
 const NotificationMessage = styled.p`
@@ -11,14 +10,11 @@ const NotificationMessage = styled.p`
     margin-bottom: 10px;
 `;
 
-class Notification extends Component {
-    render() {
-        return (
-            <>
-            <NotificationMessage>{this.props.message}</NotificationMessage>
-            </>
-        )
-    }
+export const Notification = ({message}) => {
+    return (
+        <>
+            <NotificationMessage>{message}</NotificationMessage>
+        </>
+    )
 }
 
-export default Notification;

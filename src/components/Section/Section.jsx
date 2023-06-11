@@ -1,6 +1,6 @@
 import { Container, SectionStyle, SectionTitle } from './Section.styled';
 
-const Section = ({children, title}) => {
+export const Section = ({children, title}) => {
     return (
         <SectionStyle>
             <Container>
@@ -10,5 +10,3 @@ const Section = ({children, title}) => {
         </SectionStyle>
     )
 }
-
-export default Section;
