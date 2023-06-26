@@ -1,8 +1,13 @@
-import PropTypes from 'prop-types';
 import { StatisticsItem } from './StatisticsItem';
 import { StatisticsList } from './Statistics.styled';
+import { useSelector } from 'react-redux';
+import { getPositivePercentage, getStatistics, getSum} from 'redux/selectors';
 
-export const Statistics = ({options, total, positivePercentage}) => {
+export const Statistics = () => {
+    const options = useSelector(getStatistics);
+    const total = useSelector(getSum);
+    const positivePercentage = useSelector(getPositivePercentage); 
+
     return (
         <StatisticsList>
                 {Object.entries(options).map(([key, value]) => {
@@ -19,14 +24,4 @@ export const Statistics = ({options, total, positivePercentage}) => {
                 value={`${positivePercentage}%`}/>
             </StatisticsList>
     )
-}
-
-Statistics.propTypes = {
-    options: PropTypes.shape({
-        good: PropTypes.number.isRequired,
-        bad: PropTypes.number.isRequired,
-        neutral: PropTypes.number.isRequired,
-    }).isRequired,
-    total: PropTypes.number.isRequired,
-    positivePercentage: PropTypes.number.isRequired,
 }

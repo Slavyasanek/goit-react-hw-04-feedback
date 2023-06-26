@@ -10,10 +10,10 @@ const NotificationMessage = styled.p`
     margin-bottom: 10px;
 `;
 
-export const Notification = ({message}) => {
+export const Notification = () => {
     return (
         <>
-            <NotificationMessage>{message}</NotificationMessage>
+            <NotificationMessage>There is no feedback</NotificationMessage>
         </>
     )
 }

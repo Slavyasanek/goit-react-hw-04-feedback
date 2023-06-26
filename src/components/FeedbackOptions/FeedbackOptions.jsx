@@ -1,9 +1,25 @@
-import PropTypes from 'prop-types';
 import { Button, ButtonWrapper } from './FeedbackOptions.styled';
 import { AiFillLike, AiFillDislike } from 'react-icons/ai';
 import { BsEmojiNeutral } from 'react-icons/bs';
+import { useDispatch, useSelector } from 'react-redux';
+import { addBad, addGood, addNeutral } from 'redux/statisticsSlice';
+import { getStatistics } from 'redux/selectors';
 
-export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
+export const FeedbackOptions = () => {
+    const dispatch = useDispatch();
+    const statistics = useSelector(getStatistics);
+    const options = Object.keys(statistics);
+
+    const onLeaveFeedback = option => {
+        if (option === 'good') {
+            dispatch(addGood());
+        } else if (option === 'bad') {
+            dispatch(addBad());
+        } else if (option === 'neutral') {
+            dispatch(addNeutral());
+        }
+    };
+
     let icon = null;
     return (
         <ButtonWrapper>
@@ -33,9 +49,4 @@ export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
             })}
         </ButtonWrapper>
     )
-}
-
-FeedbackOptions.propTypes = {
-    options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    onLeaveFeedback: PropTypes.func.isRequired
 }
